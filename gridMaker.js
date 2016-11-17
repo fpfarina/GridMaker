@@ -1,6 +1,8 @@
 (function (jQuery, window, fn) {
+
     "use strict"
     fn(jQuery, window);
+
 })(jQuery, window, function ($, window) {
 
     "use strict";
@@ -81,13 +83,14 @@
 
     fn.start = function() {
 
-        var self = this;
-        var deck = 0;    
-        var renderTime = 20;
+        var self = this,
+            deck = 0,
+            renderTime = 20,
+            renderTimer = null,
+            firstTime = true;
+
         rowCalculator();
-        makeDeck(true);
-        $(window).resize(_.debounce(checkResize,200)); //external library
-        var renderTimer = null;
+        makeDeck();
 
         function checkResize() {
             if (!self.rendering) {
@@ -101,9 +104,13 @@
                 self.rendering = false;
                 var finalCode = "";
                 for (var i = 0; i < self.actualRows; i++) {
-                    finalCode += self.row[i].img += "</div>";
+                    finalCode += self.row[i].img + "</div>";
                 }
                 self.wrapper.html(finalCode);
+                if (firstTime) {
+                    $(window).resize(_.debounce(checkResize,200)); //external library
+                    firstTime = false;
+                }
             } else {
                 renderTimer = setTimeout(render, renderTime);
             }
@@ -158,18 +165,20 @@
         function getImageSize(img, block) {
             var $img = img[0];
 
-            var wait = setInterval(function($img, block) {
+            function getSize () {
                 var w = $img.naturalWidth,
                     h = $img.naturalHeight;
                 if (w && h) {
-                    clearInterval(wait);
                     secondStep(block, w, h);
+                } else {
+                    setTimeout(getSize($img, block), renderTime);
                 }
-            }($img, block), 0);
+            }
+
+            setTimeout(getSize, renderTime);
         }
 
-        function makeDeck (firstTime) {
-
+        function makeDeck () {
             if (firstTime) {
                 self.wrapper.addClass("grid-system-container");
             } else {
@@ -207,6 +216,5 @@
             }
         }
     }
-
     window.GridMaker = GridMaker;
 });

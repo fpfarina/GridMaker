@@ -2,10 +2,11 @@
 
 .grid-system-container .grid-row {
     width: 25%;
-    vertical-align: top;
     padding: 5px 8px;
-    display: inline-block;
     text-align: center;
+    display: block;
+    float: left;
+    box-sizing: border-box;
 }
 
 .grid-system-container.row-1 .grid-row{
