@@ -9,9 +9,9 @@ GridMaker is very simple JavaScript layout library. It displays images in dinami
 var youGridName = new GridSystem (WrapperID_string, BlockCLASS_string, numberOfRows_number);
 yourGridName.start();
 ```
-**WrapperID** -> It's the div where the GridSystem will work. (Pass the name as STRING)
-**BlockCLASS** -> All the block you wanna to automatically order in the grid system, must have the same class name. (Pass the name as STRING)
-**Number of Rows** -> It's the number of rows. (NUMBER)
+>**WrapperID** -> It's the div where the GridSystem will work. (Pass the name as STRING)
+>**BlockCLASS** -> All the block you wanna to automatically order in the grid system, must have the same class name. (Pass the name as STRING)
+>**Number of Rows** -> It's the number of rows. (NUMBER)
 
 - You can make as many grids system you want in your page. For example:
 ```
