@@ -1,0 +1,61 @@
+/* ENGINE CSS - yu can change padding values!!*/
+
+.grid-system-container .grid-row {
+    width: 25%;
+    vertical-align: top;
+    padding: 5px 8px;
+    display: inline-block;
+    text-align: center;
+}
+
+.grid-system-container.row-1 .grid-row{
+    width: 100%;
+}
+
+
+.grid-system-container.row-2 .grid-row{
+    width: 50%;
+}
+
+.grid-system-container.row-3 .grid-row{
+    width: 33.33%;
+}
+
+.grid-system-container.row-4 .grid-row{
+    width: 25%;
+}
+
+.grid-system-container.row-5 .grid-row{
+    width: 20%;
+}
+
+.grid-system-container.row-1 #row2,
+.grid-system-container.row-1 #row3,
+.grid-system-container.row-1 #row4,
+.grid-system-container.row-1 #row5,
+.grid-system-container.row-2 #row3,
+.grid-system-container.row-2 #row4,
+.grid-system-container.row-2 #row5,
+.grid-system-container.row-3 #row4,
+.grid-system-container.row-3 #row5,
+.grid-system-container.row-4 #row5 {
+    display: none;
+}
+
+/* Personal style code */
+
+.grid-system-container .grid-row .views-field-title {
+    margin: 10px 0 30px 0;
+}
+
+.grid-system-container .grid-row .views-field-title a {
+    margin-top: 10px;
+    font-size: 22px;
+    font-family: 'Roboto', sans-serif;
+    color: #555;
+}
+
+.grid-system-container img {
+    width: 100%;
+    height: auto;
+}
