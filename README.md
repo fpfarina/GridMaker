@@ -31,3 +31,5 @@ yourGridNameN.start();
 You can make modifications in the GridSystem.css. Maybe you prefer another padding o margin, or maybe do you prefer more columns. Now this system it's configured to accept a maximum of 5 rows. But it's easy, just see how the code works and reconfigure it!
 
 To configure the resize width you have to modify the values of the function checkResize() of GridSystem.js, it's the unique configuration that you have to modify in the js file.
+
+#Bye!
