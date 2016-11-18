@@ -18,7 +18,7 @@
         this.blockName = blockName;
     }
 
-    /* LOGIC*/
+    /* LOGIC - The function .debounce has been taken of underscore.js*/
     var _ = new function () {
         var _ = this;
 
