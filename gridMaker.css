@@ -12,8 +12,6 @@
 .grid-system-container.row-1 .grid-row{
     width: 100%;
 }
-
-
 .grid-system-container.row-2 .grid-row{
     width: 50%;
 }
@@ -21,11 +19,9 @@
 .grid-system-container.row-3 .grid-row{
     width: 33.33%;
 }
-
 .grid-system-container.row-4 .grid-row{
     width: 25%;
 }
-
 .grid-system-container.row-5 .grid-row{
     width: 20%;
 }
@@ -44,17 +40,6 @@
 }
 
 /* Personal style code */
-
-.grid-system-container .grid-row .views-field-title {
-    margin: 10px 0 30px 0;
-}
-
-.grid-system-container .grid-row .views-field-title a {
-    margin-top: 10px;
-    font-size: 22px;
-    font-family: 'Roboto', sans-serif;
-    color: #555;
-}
 
 .grid-system-container img {
     width: 100%;

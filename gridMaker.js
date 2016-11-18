@@ -1,5 +1,6 @@
 (function (jQuery, window, fn) {
 
+    /* GridMaker by Fepi Farina */
     "use strict"
     fn(jQuery, window);
 
@@ -83,17 +84,10 @@
 
     fn.start = function() {
 
-        var self = this,
-            deck = 0,
-            renderTime = 500,
-            renderTimer = null,
-            firstTime = true;
-
-        rowCalculator();
-        makeDeck();
-
         function checkResize() {
-            if (!self.rendering) {
+            windowWidth = $(window).width();
+            if (!self.rendering && windowWidth != lastWidth) {
+                lastWidth = windowWidth;
                 rowCalculator();
                 makeDeck();
             }
@@ -116,11 +110,11 @@
                     }
                 }
             )
+
             function condition() {
                 if (deck == self.imagesLength) {
                     renderPromise.resolve();
                     clearInterval(renderTimer);
-                    return true;
                 } else {
                     return false;
                 }
@@ -151,10 +145,6 @@
 
         /* falta hacerlo configurable y dinámico */
         function rowCalculator() {
-            var windowWidth = $(window).width(),
-                temp,
-                tempImg;
-
             if (windowWidth > 960) {
                 self.actualRows = 4;
             }
@@ -198,7 +188,6 @@
                     }
                 }, renderTime);
             }
-            
         }
 
         function makeDeck () {
@@ -213,9 +202,9 @@
                 tempImg;
 
             //self.wrapper.detach(); //take out of DOM!!
+            render();
             self.row = [];
             deck = 0;
-            render();
             for (i = 0; i < self.actualRows; i++) {
                 self.row.push({
                     height: 0,
@@ -237,6 +226,21 @@
                 }
             }
         }
+
+        /* Var declarations of start function */
+
+        var self = this,
+        deck = 0,
+        renderTime = 500,
+        renderTimer = null,
+        firstTime = true,
+        windowWidth = $(window).width(),
+        lastWidth = windowWidth;
+
+        /* init */
+
+        rowCalculator();
+        makeDeck();
     }
     window.GridMaker = GridMaker;
 });
