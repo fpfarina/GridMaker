@@ -85,7 +85,7 @@
 
         var self = this,
             deck = 0,
-            renderTime = 20,
+            renderTime = 500,
             renderTimer = null,
             firstTime = true;
 
@@ -100,19 +100,34 @@
         }
 
         function render() {
-            if (deck == self.imagesLength) {
-                self.rendering = false;
-                var finalCode = "";
-                for (var i = 0; i < self.actualRows; i++) {
-                    finalCode += self.row[i].img + "</div>";
+            self.rendering = true;
+            var renderPromise = new $.Deferred;
+            $.when(renderPromise)
+                .done(function() {
+                    self.rendering = false;
+                    var finalCode = "";
+                    for (var i = 0; i < self.actualRows; i++) {
+                        finalCode += self.row[i].img + "</div>";
+                    }
+                    self.wrapper.html(finalCode);
+                    if (firstTime) {
+                        $(window).resize(_.debounce(checkResize,200)); //external library
+                        firstTime = false;
+                    }
                 }
-                self.wrapper.html(finalCode);
-                if (firstTime) {
-                    $(window).resize(_.debounce(checkResize,200)); //external library
-                    firstTime = false;
+            )
+            function condition() {
+                if (deck == self.imagesLength) {
+                    renderPromise.resolve();
+                    clearInterval(renderTimer);
+                    return true;
+                } else {
+                    return false;
                 }
-            } else {
-                renderTimer = setTimeout(render, renderTime);
+            }
+
+            if (!condition()) {
+                renderTimer = setInterval(condition, 20)
             }
         }
 
@@ -170,12 +185,20 @@
                     h = $img.naturalHeight;
                 if (w && h) {
                     secondStep(block, w, h);
+                    return true;
                 } else {
-                    setTimeout(getSize($img, block), renderTime);
+                    return false;
                 }
             }
 
-            setTimeout(getSize, renderTime);
+            if (!getSize()) {
+                var timer = setInterval(function() {
+                    if (getSize()) {
+                        clearInterval(timer);
+                    }
+                }, renderTime);
+            }
+            
         }
 
         function makeDeck () {
@@ -189,8 +212,7 @@
                 temp, 
                 tempImg;
 
-            self.rendering = true;
-            renderTimer = setTimeout(render, renderTime);
+            render();
             //self.wrapper.detach(); //take out of DOM!!
             self.row = [];
             deck = 0;
