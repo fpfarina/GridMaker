@@ -212,10 +212,10 @@
                 temp, 
                 tempImg;
 
-            render();
             //self.wrapper.detach(); //take out of DOM!!
             self.row = [];
             deck = 0;
+            render();
             for (i = 0; i < self.actualRows; i++) {
                 self.row.push({
                     height: 0,
