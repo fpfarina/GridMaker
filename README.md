@@ -1,5 +1,5 @@
 # GridMaker 
-###by Fepi
+###by @fpfarina
 
 GridMaker is a very simple JavaScript layout library. It displays images in dinamic vertical colummns. It's responsive and automatically size to fit the window when the user resize it. And what it's better, **it's easy** to use!!
 
